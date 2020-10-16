@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./template.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="sidebar " id="sidebar">
+            <div class="sidebar-inner " id="sidebar-inner">
+                <p>D.A.M.S</p>
+                <hr>
+                <div class="row-sidebar profile">
+                    <i class="far fa-user-circle icon-sidebar"></i>
+                    <div class="row-sidebar-text name-bar ">
+                        Engr. Fahad Iqbal
+                    </div>
+                </div>
+                <div id="drop-down-profile"class="row-sidebar-profile">
+                    <div class="row-sidebar">
+                        <i class="fas fa-download icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                           View Profile
+                        </div>
+                    </div>
+                    <div class="row-sidebar">
+                        <i class="fas fa-download icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                           Change Password
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="row-sidebar selected-sidebar">
+                    <i class="fas fa-university icon-sidebar "></i>
+                    <div class="row-sidebar-text ">
+                        Overall Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-building icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Department Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-users icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Batch Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-user-friends icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Class Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-book icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Subject Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-chart-line icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Class Conducted Statistics
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-user-tie icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Teacher Wise Attendance
+                    </div>
+                </div>
+
+                <div class="row-sidebar">
+                    <i class="fas fa-download icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        PDF Report Download
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-sign-out-alt icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                      Logout
+                    </div>
+                </div>
+               
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="dashboard-inner " id="main-bar">
+            <div class="floating-menu">
+                <button id="floating">X</button>
+            </div>
+
+            <!-- top graph -->
+            <div class="dashboard-inner-main-graph">
+
+                <canvas id="overallstatsChart"></canvas>
+            </div>
+
+
+
+
+            <!-- main statistics -->
+            <div class="dashboard-inner-main-stats">
+                <div class="dims-inner dims-side">
+                    <h3>Overall Attendance</h3>
+                    <h4>90%</h4>
+                    <h5>90 Classes</h5>
+                </div>
+                <div class="dims-inner dims-side">
+                    <h3>Last Attendance Uploaded</h3>
+                    <h4>90%</h4>
+                    <h5>90 Classes</h5>
+                </div>
+                <div class="dims-inner dims-side">
+                    <h3>Last 7 Days</h3>
+                    <h4>90%</h4>
+                    <h5>90 Classes</h5>
+                </div>
+                <div class="dims-inner">
+                    <h3>Last 30 Days</h3>
+                    <h4>90%</h4>
+                    <h5>90 Classes</h5>
+                </div>
+
+            </div>
+
+
+            <h2 class="dashboard-heading">
+                Department Wise Attendance
+            </h2>
+
+            <!-- depart wise statistics -->
+            <div class="dashboard-inner-main-departs">
+                <div class="dimd-row">
+                    <div class="dimd-inner">
+                        <h2>Computer System Engineering</h2>
+                        <div class="dimd-inner-top" id="chartContainer">
+                            <canvas id="CSEOverall"></canvas>
+                        </div>
+                        <div class="dimd-inner-bottom">
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 17</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 18</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 19</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row">
+                                <h2>Batch 20</h2>
+                                <h3>90%</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dimd-inner">
+                        <h2>Electronic Engineering</h2>
+                        <div class="dimd-inner-top" id="chartContainer">
+                            <canvas id="ESOverall"></canvas>
+
+                        </div>
+                        <div class="dimd-inner-bottom">
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 17</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 18</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 19</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row">
+                                <h2>Batch 20</h2>
+                                <h3>90%</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dimd-inner">
+                        <h2>Energy and Environment Engineering</h2>
+                        <div class="dimd-inner-top" id="chartContainer">
+                            <canvas id="EEOverall"></canvas>
+                        </div>
+                        <div class="dimd-inner-bottom">
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 17</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 18</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Batch 19</h2>
+                                <h3>90%</h3>
+                            </div>
+                            <div class="dimdib-row">
+                                <h2>Batch 20</h2>
+                                <h3>90%</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show" id="show">
+
+                    <div class="dimd-row">
+                        <div class="dimd-inner">
+                            <h2>Industrial Engineering and Management</h2>
+                            <div class="dimd-inner-top" id="chartContainer">
+    
+                                <canvas id="INOverall"></canvas>
+                            </div>
+                            <div class="dimd-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 17</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 18</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 19</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Batch 20</h2>
+                                    <h3>90%</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimd-inner">
+                            <h2>Architectural Engineering</h2>
+                            <div class="dimd-inner-top" id="chartContainer">
+    
+                                <canvas id="AROverall"></canvas>
+                            </div>
+                            <div class="dimd-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 17</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 18</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 19</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Batch 20</h2>
+                                    <h3>90%</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimd-inner">
+                            <h2>Material and Mettalurgy Engineering</h2>
+                            <div class="dimd-inner-top" id="chartContainer">
+    
+                                <canvas id="MMOverall"></canvas>
+                            </div>
+                            <div class="dimd-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 17</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 18</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 19</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Batch 20</h2>
+                                    <h3>90%</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dimd-row">
+                        <div class="dimd-inner">
+                            <h2>Telecommunication Engineering</h2>
+                            <div class="dimd-inner-top" id="chartContainer">
+                                <canvas id="TEOverall"></canvas>
+                            </div>
+                            <div class="dimd-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 17</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 18</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 19</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Batch 20</h2>
+                                    <h3>90%</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimd-inner">
+                            <h2>Petroluem and Gas Engineering</h2>
+                            <div class="dimd-inner-top" id="chartContainer">
+                                <canvas id="PGOverall"></canvas>
+                            </div>
+                            <div class="dimd-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 17</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 18</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 19</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Batch 20</h2>
+                                    <h3>90%</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimd-inner">
+                            <h2>Chemical Engineering</h2>
+                            <div class="dimd-inner-top" id="chartContainer">
+                                <canvas id="CHOverall"></canvas>
+                            </div>
+                            <div class="dimd-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 17</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 18</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Batch 19</h2>
+                                    <h3>90%</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Batch 20</h2>
+                                    <h3>90%</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text" id="text">
+                    show all...
+                </div>
+                <div class="text" id="texthide">
+                    show less...
+                </div>
+            </div>
+
+
+            <h2 class="dashboard-heading">
+                Class Conduction Status
+            </h2>
+
+
+
+            <!-- classes conducted records -->
+            <div class="dashboard-inner-main-departs">
+                <div class="dimd-row">
+                    <div class="dimc-inner">
+                        <h2>Computer System Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Expected</h2>
+                                <h3>16</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Uploaded</h2>
+                                <h3>15</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Missed</h2>
+                                <h3>1</h3>
+                            </div>
+                            <div class="dimdib-row">
+                                <h2>Classes compensated</h2>
+                                <h3>3</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dimc-inner">
+                        <h2>Electronic Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Expected</h2>
+                                <h3>16</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Uploaded</h2>
+                                <h3>15</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Missed</h2>
+                                <h3>1</h3>
+                            </div>
+                            <div class="dimdib-row">
+                                <h2>Classes compensated</h2>
+                                <h3>3</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dimc-inner">
+                        <h2>Energy and Environment Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Expected</h2>
+                                <h3>16</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Uploaded</h2>
+                                <h3>15</h3>
+                            </div>
+                            <div class="dimdib-row dimdib-row-border">
+                                <h2>Classes Missed</h2>
+                                <h3>1</h3>
+                            </div>
+                            <div class="dimdib-row">
+                                <h2>Classes compensated</h2>
+                                <h3>3</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show" id="showclass">
+                    <div class="dimd-row">
+                        <div class="dimc-inner">
+                            <h2>Industrial Engineering and Management</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Expected</h2>
+                                    <h3>16</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Uploaded</h2>
+                                    <h3>15</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Missed</h2>
+                                    <h3>1</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Classes compensated</h2>
+                                    <h3>3</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimc-inner">
+                            <h2>Architectural Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Expected</h2>
+                                    <h3>16</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Uploaded</h2>
+                                    <h3>15</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Missed</h2>
+                                    <h3>1</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Classes compensated</h2>
+                                    <h3>3</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimc-inner">
+                            <h2>Material and Mettalurgy Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Expected</h2>
+                                    <h3>16</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Uploaded</h2>
+                                    <h3>15</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Missed</h2>
+                                    <h3>1</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Classes compensated</h2>
+                                    <h3>3</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dimd-row">
+                        <div class="dimc-inner">
+                            <h2>Telecommunication Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Expected</h2>
+                                    <h3>16</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Uploaded</h2>
+                                    <h3>15</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Missed</h2>
+                                    <h3>1</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Classes compensated</h2>
+                                    <h3>3</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimc-inner">
+                            <h2>Petroluem and Gas Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Expected</h2>
+                                    <h3>16</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Uploaded</h2>
+                                    <h3>15</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Missed</h2>
+                                    <h3>1</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Classes compensated</h2>
+                                    <h3>3</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dimc-inner">
+                            <h2>Chemical Engineering</h2>
+                        <div class="dimc-inner-top">
+                            <h2>90%</h2>
+                        </div>
+                        <div class="dimc-inner-bottom">
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Expected</h2>
+                                    <h3>16</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Uploaded</h2>
+                                    <h3>15</h3>
+                                </div>
+                                <div class="dimdib-row dimdib-row-border">
+                                    <h2>Classes Missed</h2>
+                                    <h3>1</h3>
+                                </div>
+                                <div class="dimdib-row">
+                                    <h2>Classes compensated</h2>
+                                    <h3>3</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="text" id="textclass">
+                    show all...
+                </div>
+                <div class="text" id="textclasshide">
+                    show less...
+                </div>
+            </div>
+
+
+
+
+
+        
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+
+<!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+<script src="./template.js"></script>
+
+</html>
+
+<script>
+
+
+    // sidebar open on hover
+
+
+
+
+
+
+</script>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./template.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="sidebar " id="sidebar">
+            <div class="sidebar-inner " id="sidebar-inner">
+                <p>D.A.M.S</p>
+                <hr>
+                <div class="row-sidebar">
+                    <i class="far fa-user-circle "></i>
+                    <div class="row-sidebar-text name-bar ">
+                        Engr. Fahad Iqbal
+                    </div>
+                </div>
+                <hr>
+                <div class="row-sidebar selected-sidebar">
+                    <i class="fas fa-university"></i>
+                    <div class="row-sidebar-text ">
+                        Overall Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-building"></i>
+                    <div class="row-sidebar-text ">
+                        Department Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-users"></i>
+                    <div class="row-sidebar-text ">
+                        Batch Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-user-friends"></i>
+                    <div class="row-sidebar-text ">
+                        Class Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-book"></i>
+                    <div class="row-sidebar-text ">
+                        Subject Wise Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="row-sidebar-text ">
+                        Class Conducted Statistics
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-user-tie"></i>
+                    <div class="row-sidebar-text ">
+                        Teacher Wise Attendance
+                    </div>
+                </div>
+
+                <div class="row-sidebar">
+                    <i class="fas fa-download"></i>
+                    <div class="row-sidebar-text ">
+                        PDF Report Download
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="dashboard-inner " id="main-bar">
+            <div class="floating-menu">
+                <button id="floating">X</button>
+            </div>
+
+            <div class="dashboard-inner-teacher-top">
+                <h2>Teacher's Progress</h2>
+            </div>
+
+
+
+            <!-- teacher selection -->
+            <div class="dashboard-inner-teacher" >
+                <div class="dit-heading">
+                    <table>
+                        <tr>
+                            <td>
+                                <h3>Select Department</h3>
+                            </td>
+                            <td>
+                                <Select>
+                                    <option value="">All Department</option>
+                                    <option value="">A</option>
+                                    <option value="">B</option>
+                                    <option value="">C</option>
+                                    <option value="">D</option>
+                                </Select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Select Batch</h3>
+                            </td>
+                            <td>
+                                <Select>
+                                    <option value="">All Batch</option>
+                                    <option value="">A</option>
+                                    <option value="">B</option>
+                                    <option value="">C</option>
+                                    <option value="">D</option>
+                                </Select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Select Teacher</h3>
+                            </td>
+                            <td>
+                                <Select  id="teacher-selected">
+                                    <option selected disabled>Select a Teacher</option>
+                                    <option value="">A</option>
+                                    <option value="">B</option>
+                                    <option value="">C</option>
+                                    <option value="">D</option>
+                                </Select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <h2 id="best-teacher-heading">
+                Teacher of the Week: <br>
+                <span class="dit-best-span">
+                20-August-2020 - 27-August-2020
+                </span>
+            </h2>
+
+            <!-- best teacher -->
+            <div class="dit-best" id="best-teacher-div">
+                <h2>Engr. Fahad Iqbal<span>Computer System Department</span> </h2>
+                    <table class="ditb-record">
+                        <tr>
+                            <td>
+                                <h3>
+                                    Total Classes Scheduled
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                            <td>
+                                <h3>
+                                    Total Classes Conducted
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>
+                                    Total Classes Missed
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                            <td>
+                                <h3>
+                                    Compensated Classes
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                        </tr>
+                    </table>
+            </div>
+
+            <h2 id="teacher-heading">
+                Record Updated uptil: <br>
+                <span class="dit-best-span">
+                    27-August-2020
+                </span>
+            </h2>
+
+            <!--  teacher query-->
+            <div class="dit-best" id="teacher-div">
+                <h2>Engr. Shamim ur Rehman<span>Computer System Department</span> </h2>
+                    <table class="ditb-record">
+                        <tr>
+                            <td>
+                                <h3>
+                                    Total Classes Scheduled
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                            <td>
+                                <h3>
+                                    Total Classes Conducted
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>
+                                    Total Classes Missed
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                            <td>
+                                <h3>
+                                    Compensated Classes
+                                    <span class="dit-best-span">
+                                        43
+                                    </span>
+                                </h3>
+                            </td>
+                        </tr>
+                    </table>
+            </div>
+
+
+        </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
+
+<!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+<script src="./template.js"></script>
+
+</html>
+
+<script>
+
+
+    // sidebar open on hover
+
+    $( "#teacher-selected" ).change(function() {
+  $('#best-teacher-heading').css('display','none');
+  $('#best-teacher-div').css('display','none');
+  $('#teacher-heading').css('display','flex');
+  $('#teacher-div').css('display','flex');
+});
+
+
+
+
+</script>

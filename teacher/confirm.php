@@ -7,7 +7,6 @@ session_start();
 if(isset($_SESSION['User']))
 {    
 
-
     // if(isset($_POST['autoa'])){
         ?>
     
@@ -18,9 +17,9 @@ if(isset($_SESSION['User']))
         $get_recent_term_Q  = mysqli_query($con,"SELECT `term_name`,`term_id` FROM `term` WHERE 1");
         while($row = mysqli_fetch_assoc($get_recent_term_Q)){
             $term_name = $row['term_name'];
-            $term_id = $row['term_id'];
+            $term = $row['term_id'];
         }
-        $term =  $term_id;
+        // $term =  $term_id;
         $period_ida = $_POST['period_id'];
         $period_name_Qa  = mysqli_query($con,"SELECT  * FROM `period_table_normal` WHERE period_id = '$period_ida'");
      

@@ -211,7 +211,31 @@ $te_20_attendance = new class_attendance();
 
 
 
+function get_over($class,$class_2,$con){
 
+    $dept = $class->get_dept();
+    $batch = $class->get_batch(); 
+    $table_name =  $dept."_".$batch."_".($class->get_data()[2][0])."_1_".($class->get_data()[1][0])."_attendance";
+   
+   for($a=1;$a<121;$a++){
+       $id = "a".$a;
+       $get_attendance = mysqli_query($con,"SELECT `$id` FROM `$table_name` WHERE 1");
+    //    echo $table_name;
+       while($row = mysqli_fetch_assoc($get_attendance)){
+           $status = $row[$id];
+
+          if($status== "present"){
+                $class_2->add_present();
+          }
+          else if($status == "absent"){
+              $class_2->add_absent();
+          }
+       }
+   }
+
+
+    
+}
 
 
 

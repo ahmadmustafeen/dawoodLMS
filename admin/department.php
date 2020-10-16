@@ -3,7 +3,12 @@
 require_once('../connection.php');
 
 require_once('./departFile.php');
-echo $mm_17->get_data()[0][0];
+require_once('./gettingdataDepart.php');
+get_over($mm_17,$mm_17_attendance,$con); 
+
+// get_over($mm_18,$mm_18_attendance,$con);
+// get_over($mm_19,$mm_19_attendance,$con);
+// get_over($mm_20,$mm_20_attendance,$con);
 ?>
 
 <!DOCTYPE html>
@@ -347,7 +352,7 @@ if( $( window ).width()>768){
                             <div class="dimd-inner-bottom">
                                 <div class="dimdib-row dimdib-row-border">
                                     <h2>Batch 17</h2>
-                                    <h3><?php echo $attendance_batch_mm_17_PER ?>%</h3>
+                                    <h3><?php echo $mm_17_attendance->get_present();?>%</h3>
                                 </div>
                                 <div class="dimdib-row dimdib-row-border">
                                     <h2>Batch 18</h2>

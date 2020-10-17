@@ -85,6 +85,8 @@ class Teacher{
      }
      function get_class_conducted(){
         return $this->number_of_classes;
+     } function get_class_missed(){
+        return $this->class_missed;
      }
 }
 
@@ -145,7 +147,7 @@ function get_over($class,$con){
         $number_of_class ++;
         $present = 0;
         $absent = 0;
-        $count=0;
+        $count=0;$countreverse=0;
         for($a=1;$a<121;$a++){
             $id = "a".$a;
             $get_attendance = mysqli_query($con,"SELECT `$id` FROM `$table_name` WHERE 1");
@@ -158,14 +160,21 @@ function get_over($class,$con){
                     $present= $present +1;
                }
                else if($status == "absent"){
+                if($id === 'a1'){
+                    $count++;
+                }
+                $absent=$absent+1;
+                } else if($status == null){
                     if($id === 'a1'){
-                        $count++;
+                        $countreverse++;
                     }
-                    $absent=$absent+1;
+                    // $absent=$absent+1;
                }
             }        
         
         }
+        // echo $countreverse."<br>";
+        $class->set_class_missed($countreverse);
         $class->set_num_of_classes($count);
         $class->set_present($present);
         $class->set_absent($absent);

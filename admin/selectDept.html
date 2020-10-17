@@ -165,7 +165,7 @@
             </div> -->
             <div class="depart-admin depart-admin-select">
                 <h2>
-                    Class Wise Attendance
+                    Department Wise Attendance
                 </h2>
             </div>
 
@@ -181,29 +181,39 @@
                 <form action="" class="form-select">
                     <h2 class="dashboard-heading avatar"
                         data-tooltip="Showing the last 30 days attendance uploaded in entire university">
-                        Select Subject 
+                        Select department to view the complete statistics
                     </h2>
 
                     <table>
-                        <tr>
+                        <tr class="form-row">
                             <td>
                                 <label for="">
-                                    Select Subject
+                                    Select Department
                                 </label>
                             </td>
                             <td>
-                                    <input value="" placeholder="Select a Subject"/>
+                                <select name="" id="">
+                                    <option value="" selected disabled>Select a Department</option>
+                                    <option value="ar">Architecture and Engineering</option>
+                                    <option value="ch">Chemical Engineering</option>
+                                    <option value="cs">Computer System Engineering</option>
+                                    <option value="ee">Energy and Environements</option>
+                                    <option value="es">Electronics Engineering</option>
+                                    <option value="in">Industrial Engineering and Management</option>
+                                    <option value="mm">Metallurgy and Material Engineering</option>
+                                    <option value="pg">Petroleum And Gas Engineering</option>
+                                    <option value="te">Telecommunication Engineering</option>
+                                </select>
                             </td>
                         </tr>
-         
                     </table>
 
             </div>
-           <div class="row">
-           <a href="" >
-           <button  id="submit-select" class="red">Back</button>
-           </a> <button id="submit-select" class="green">Check Stats</button>
-           </div> 
+            <div class="row">
+                <a href="" >
+                <button  id="submit-select" class="red">Back</button>
+                </a> <button id="submit-select" class="green">Check Stats</button>
+                </div> 
             </form>
 
 

@@ -1,56 +1,46 @@
-
 <?php
 require_once('../connection.php');
 
 require_once('./departFile.php');
 require_once('./gettingdataDepart.php');
-get_over($mm_17,$mm_17_attendance,$con); 
-
-// get_over($mm_18,$mm_18_attendance,$con);
-// get_over($mm_19,$mm_19_attendance,$con);
-// get_over($mm_20,$mm_20_attendance,$con);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
 
 <head>
     <script>
-        $('.profile').click(function () {
-    if(  
-        $("#drop-down-profile").hasClass('row-sidebar-profile')){
-        $("#drop-down-profile").addClass('row-sidebar-profile-display');
-        $("#drop-down-profile").removeClass('row-sidebar-profile');
+    $('.profile').click(function() {
+        if (
+            $("#drop-down-profile").hasClass('row-sidebar-profile')) {
+            $("#drop-down-profile").addClass('row-sidebar-profile-display');
+            $("#drop-down-profile").removeClass('row-sidebar-profile');
+        } else {
+            $("#drop-down-profile").addClass('row-sidebar-profile');
+            $("#drop-down-profile").removeClass('row-sidebar-profile-display');
+        }
+    });
+
+    // hover function only if width is above 768px
+    if ($(window).width() > 768) {
+        $('#sidebar').hover(function() {
+                // alert("done");
+                $(this).addClass('sidebar-opened');
+                $(".row-sidebar-text").addClass('text-opened');
+                $('.icon-sidebar').css('margin', '0px');
+                $('.row-sidebar').css('padding', '0px 10px');
+            },
+            function() {
+                $(this).removeClass('sidebar-opened');
+                $(".row-sidebar-text").removeClass('text-opened');
+                $(".dashboard-inner").removeClass('da');
+                $('.icon-sidebar').css('margin', 'auto');
+                $('.row-sidebar').css('padding', '0px');
+            }
+        );
     }
-    else{
-        $("#drop-down-profile").addClass('row-sidebar-profile');
-        $("#drop-down-profile").removeClass('row-sidebar-profile-display');
-    }
-});
-
-// hover function only if width is above 768px
-if( $( window ).width()>768){
-    $('#sidebar').hover(function () {
-        // alert("done");
-       $(this).addClass('sidebar-opened');
-       $(".row-sidebar-text").addClass('text-opened');
-       $('.icon-sidebar').css('margin','0px');
-       $('.row-sidebar').css('padding','0px 10px');
-       }
-      ,
-      function (){
-       $(this).removeClass('sidebar-opened');
-       $(".row-sidebar-text").removeClass('text-opened');
-       $(".dashboard-inner").removeClass('da');
-       $('.icon-sidebar').css('margin','auto');
-       $('.row-sidebar').css('padding','0px');
-      } 
-    );
-       }
-
-
-
     </script>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assests/style/dashboard-index.css">
@@ -167,14 +157,14 @@ if( $( window ).width()>768){
                 <button id="floating">X</button>
             </div>
 
-             <!-- top graph -->
+            <!-- top graph -->
             <div class="dashboard-inner-main-graph">
-             <h2>Department Wise Attendance</h2>
+                <h2>Department Wise Attendance</h2>
                 <!-- <canvas id="overallstatsChart"></canvas> -->
             </div>
 
 
-         
+
 
             <!-- main statistics -->
             <div class="dashboard-inner-main-stats">
@@ -678,10 +668,7 @@ if( $( window ).width()>768){
                                     <h2>Classes Missed</h2>
                                     <h3>1</h3>
                                 </div>
-                                <div class="dimdib-row">
-                                    <h2>Classes compensated</h2>
-                                    <h3>3</h3>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -702,9 +689,9 @@ if( $( window ).width()>768){
 
 
         </div>
-        </div>
+    </div>
 </body>
-        <!-- <style>
+<!-- <style>
             *,
             *::before,
             *::after {
@@ -772,8 +759,8 @@ if( $( window ).width()>768){
             }
         </style> -->
 
-    
-        <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
@@ -782,24 +769,3 @@ if( $( window ).width()>768){
 <script src="../assests/script/dashbaord.js"></script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

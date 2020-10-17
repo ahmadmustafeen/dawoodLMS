@@ -48,7 +48,7 @@ class Teacher{
         array_push(($this->absent_percent),$absent); 
      }
      function set_num_of_classes($number_of_classes){
-        array_push(($this->number_classes),$number_of_classes); 
+        array_push(($this->number_of_classes),$number_of_classes); 
      }
 
 
@@ -82,6 +82,9 @@ class Teacher{
      }
      function get_period(){
         return $this->period;
+     }
+     function get_class_conducted(){
+        return $this->number_of_classes;
      }
 }
 
@@ -138,7 +141,7 @@ function get_over($class,$con){
     for($i=0;$i<sizeof(($class->get_data()));$i++){
         // echo $i;
         $table_name =  $class->get_data()[$i];
-        echo $table_name."<br>";
+        // echo $table_name."<br>";
         $number_of_class ++;
         $present = 0;
         $absent = 0;
@@ -160,9 +163,10 @@ function get_over($class,$con){
                     }
                     $absent=$absent+1;
                }
-            } echo $count."<br>";
-        }
+            }        
         
+        }
+        $class->set_num_of_classes($count);
         $class->set_present($present);
         $class->set_absent($absent);
     }
@@ -171,7 +175,4 @@ function get_over($class,$con){
 
 
 get_over($teacher,$con);
-echo (($teacher->present_percent[0])+($teacher->absent_percent[0]));echo"<br>";
-echo (($teacher->present_percent[2])."<br>".($teacher->absent_percent[2]));echo"<br>";
-echo (($teacher->present_percent[1])+($teacher->absent_percent[1]));
 ?>

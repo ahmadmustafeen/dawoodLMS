@@ -173,13 +173,13 @@
 ?>
  -->
 
- <!-- ///////////////////////////////////////////////////////////////////////////// -->
- <!-- ///////////////////////////////////////////////////////////////////////////// -->
- <!-- ///////////////////////////////////////////////////////////////////////////// -->
- <!-- ///////////////////////////////////////////////////////////////////////////// -->
- <!-- ///////////////////////////////////////////////////////////////////////////// -->
- <!-- ///////////////////////////////////////////////////////////////////////////// -->
- <!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////// -->
 
 
 <!--  
@@ -2543,7 +2543,9 @@
     <script src="../assests/script/dashbaord.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <title>Dashboard</title>
 </head>
 
@@ -2554,86 +2556,111 @@
     <div class="dashboard">
         <div class="sidebar " id="sidebar">
             <div class="sidebar-inner " id="sidebar-inner">
-                <p>D.A.M.S</p>
+                <p style="text-align:center">D.A.M.S</p>
                 <hr>
                 <div class="row-sidebar profile">
                     <i class="far fa-user-circle icon-sidebar"></i>
                     <div class="row-sidebar-text name-bar ">
-                        <?php echo $username_name ?>
+                        <?php 
+                        // echo $username_name ?>
                     </div>
                 </div>
-                <div id="drop-down-profile"class="row-sidebar-profile">
+                <div id="drop-down-profile" class="row-sidebar-profile">
                     <div class="row-sidebar">
                         <i class="fas fa-download icon-sidebar"></i>
                         <div class="row-sidebar-text ">
-                           View Profile
+                            View Profile
                         </div>
                     </div>
                     <div class="row-sidebar">
                         <i class="fas fa-download icon-sidebar"></i>
                         <div class="row-sidebar-text ">
-                           Change Password
+                            Change Password
                         </div>
                     </div>
 
                 </div>
                 <hr>
                 <div class="row-sidebar selected-sidebar">
-                    <i class="fas fa-university icon-sidebar "></i>
-                    <div class="row-sidebar-text ">
-                        Overall Performance
-                    </div>
+                    <a href="./index.php" style="color:#2ca8ff">
+                        <i class="fas fa-university icon-sidebar "></i>
+                        <div class="row-sidebar-text ">
+                            Overall Performance
+                        </div>
+                    </a>
+
                 </div>
                 <div class="row-sidebar">
-                    <i class="fas fa-building icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Department Wise Attendance
-                    </div>
+                    <a href="./selectDept.html">
+                        <i class="fas fa-building icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Department Wise Attendance
+                        </div>
+                    </a>
+
                 </div>
                 <div class="row-sidebar">
-                    <i class="fas fa-users icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Batch Wise Attendance
-                    </div>
+                <a href="./selectBatch.html">
+                        <i class="fas fa-users icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Batch Wise Attendance
+                        </div>
+                    </a>
                 </div>
                 <div class="row-sidebar">
-                    <i class="fas fa-user-friends icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Class Wise Attendance
-                    </div>
+                <a href="./selectClass.html">
+                        <i class="fas fa-user-friends icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Class Wise Attendance
+                        </div>
+                    </a>
+
                 </div>
                 <div class="row-sidebar">
-                    <i class="fas fa-book icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Subject Wise Attendance
-                    </div>
+                    <a href="./selectSubject.html">
+                        <i class="fas fa-book icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Subject Wise Attendance
+                        </div>
+                    </a>
+
                 </div>
                 <div class="row-sidebar">
-                    <i class="fas fa-chart-line icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Class Conducted Statistics
-                    </div>
+                    <a href="./selectTeacher.html">
+                        <i class="fas fa-user-tie icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Teacher Wise Attendance
+                        </div>
+                    </a>
+
                 </div>
                 <div class="row-sidebar">
-                    <i class="fas fa-user-tie icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Teacher Wise Attendance
-                    </div>
+                    <a href="./selectConductedStatus.html">
+                        <i class="fas fa-chart-line icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Class Conducted Statistics
+                        </div>
+                    </a>
+
+                </div>
+                <div class="row-sidebar">
+                    <a href="">
+                        <i class="fas fa-download icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            PDF Report Download
+                        </div>
+                    </a>
+
+                </div>
+                <div class="row-sidebar">
+                    <a href="../logout.php">
+                        <i class="fas fa-sign-out-alt icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Logout
+                        </div>
+                    </a>
                 </div>
 
-                <div class="row-sidebar">
-                    <i class="fas fa-download icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        PDF Report Download
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-sign-out-alt icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                      Logout
-                    </div>
-                </div>
-               
 
             </div>
 
@@ -2664,23 +2691,29 @@
 
             <!-- main statistics -->
             <div class="dashboard-inner-main-stats">
-                <div class="dims-inner dims-side" >
-                    <h3 class="avatar" data-tooltip="Showing the attendance of the entire university of all departments">Overall Attendance</h3>
+                <div class="dims-inner dims-side">
+                    <h3 class="avatar"
+                        data-tooltip="Showing the attendance of the entire university of all departments">Overall
+                        Attendance</h3>
                     <h4><?php echo round($attendance_total_uni) ?>%</h4>
                     <h5><?php echo $total_classes?> Classes</h5>
                 </div>
                 <div class="dims-inner dims-side">
-                    <h3 class="avatar" data-tooltip="Showing the last attendance uploaded in entire university 25-09-2020">Last Attendance Uploaded</h3>
+                    <h3 class="avatar"
+                        data-tooltip="Showing the last attendance uploaded in entire university 25-09-2020">Last
+                        Attendance Uploaded</h3>
                     <h4><?php echo $present_last_percent?>%</h4>
                     <h5><?php echo $lecture_date?></h5>
                 </div>
                 <div class="dims-inner dims-side">
-                    <h3  class="avatar" data-tooltip="Showing the last 7 days attendance uploaded in entire university" >Last 7 Days</h3>
+                    <h3 class="avatar" data-tooltip="Showing the last 7 days attendance uploaded in entire university">
+                        Last 7 Days</h3>
                     <h4><?php echo $present_lastweek_percent ?>%</h4>
                     <h5><?php echo $number_of_classes_lastweek ?> Classes</h5>
                 </div>
                 <div class="dims-inner">
-                    <h3  class="avatar" data-tooltip="Showing the last 30 days attendance uploaded in entire university" >Last 30 Days</h3>
+                    <h3 class="avatar" data-tooltip="Showing the last 30 days attendance uploaded in entire university">
+                        Last 30 Days</h3>
                     <h4><?php echo  $present_lastmonth_percent ?>%</h4>
                     <h5><?php echo $number_of_classes_lastmonth ?> Classes</h5>
                 </div>
@@ -2696,7 +2729,8 @@
             <div class="dashboard-inner-main-departs">
                 <div class="dimd-row">
                     <div class="dimd-inner">
-                        <h2 class="avatar" data-tooltip="Showing the performance of Architecture Department">Architecture and Engineering</h2>
+                        <h2 class="avatar" data-tooltip="Showing the performance of Architecture Department">
+                            Architecture and Engineering</h2>
                         <div class="dimd-inner-top" id="chartContainer">
                             <canvas id="CSEOverall"></canvas>
                         </div>
@@ -2720,7 +2754,8 @@
                         </div>
                     </div>
                     <div class="dimd-inner">
-                        <h2 class="avatar" data-tooltip="Showing the performance of Chemical Department">Chemical Engineering</h2>
+                        <h2 class="avatar" data-tooltip="Showing the performance of Chemical Department">Chemical
+                            Engineering</h2>
                         <div class="dimd-inner-top" id="chartContainer">
                             <canvas id="CSEOverall"></canvas>
                         </div>
@@ -2744,7 +2779,8 @@
                         </div>
                     </div>
                     <div class="dimd-inner">
-                        <h2 class="avatar" data-tooltip="Showing the performance of Computer Department">Computer System Engineering</h2>
+                        <h2 class="avatar" data-tooltip="Showing the performance of Computer Department">Computer System
+                            Engineering</h2>
                         <div class="dimd-inner-top" id="chartContainer">
                             <canvas id="CSEOverall"></canvas>
                         </div>
@@ -2928,125 +2964,151 @@
             </div>
 
 
-            
 
 
 
 
-        
-        
-    </div>
+
+        </div>
 </body>
+
 </html>
 
 <style>
-    *, *::before, *::after {
-  box-sizing: border-box
+*,
+*::before,
+*::after {
+    box-sizing: border-box
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .avatar {
-  min-width: 200px;
+    min-width: 200px;
     /* font-size: 14px !important; */
-   width: fit-content;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+    width: fit-content;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
 
 .avatar::before,
 .avatar::after {
-  --scale: 0;
-  --arrow-size: 20px;
-  --tooltip-color: #2196f3;
+    --scale: 0;
+    --arrow-size: 20px;
+    --tooltip-color: #2196f3;
 
-  position: absolute;
-  z-index: 999;
-  top: -.25rem;
-  font-size: 18px !important;
-  font-weight: 400 !important;
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  transition: 150ms transform;
-  transform-origin: bottom center;
+    position: absolute;
+    z-index: 999;
+    top: -.25rem;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: bottom center;
 }
 
 .avatar::before {
-  --translate-y: calc(-100% - var(--arrow-size));
+    --translate-y: calc(-100% - var(--arrow-size));
 
-  content: attr(data-tooltip);
-  color: white;
-  padding: .5rem;
-  border-radius: .3rem;
-  text-align: center;
-  width: max-content;
-  max-width: 100%;
-  background: var(--tooltip-color);
+    content: attr(data-tooltip);
+    color: white;
+    padding: .5rem;
+    border-radius: .3rem;
+    text-align: center;
+    width: max-content;
+    max-width: 100%;
+    background: var(--tooltip-color);
 }
 
 .avatar:hover::before,
 .avatar:hover::after {
-  --scale: 1;
+    --scale: 1;
 }
 
 .avatar::after {
-  --translate-y: calc(-1 * var(--arrow-size));
+    --translate-y: calc(-1 * var(--arrow-size));
 
-  content: '';
-  border: var(--arrow-size) solid transparent;
-  border-top-color: var(--tooltip-color);
-  transform-origin: top center;
+    content: '';
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
 }
-</style> 
+</style>
 
 <script>
+<?php 
+// $time_line = ['week1','week2','week3','week4','week5','week6']; 
+?>
+    // var label = [];
+    // <?php 
+    // for($i=0;$i<sizeof($time_line);$i++){
+    //     ?>
 
-// <?php $time_line = ['week1','week2','week3','week4','week5','week6']; ?>
-// var label = [];
-// <?php for($i=0;$i<sizeof($time_line);$i++){
-//     ?>
-
-//     label.push("<?php echo $time_line[$i] ?>");
+    //     label.push("<?php 
+    // echo $time_line[$i] 
+    ?>
+    ");
 //     <?php
 // }
 // ?>
-// <?php $data_set = ['22','11','32','14','17','11']; ?>
+// <?php 
+// $data_set = ['22','11','32','14','17','11']; ?>
 // var data = [];
-// <?php for($i=0;$i<sizeof($data_set);$i++){
+// <?php
+//  for($i=0;$i<sizeof($data_set);$i++){
+// }
 //     ?>
 
-//     data.push("<?php echo $data_set[$i] ?>");
+//data.push("<?php
+//  echo $data_set[$i] ?>");
 //     <?php
 // }
 // ?>
 // overall university report
-        var overallstatsChart = document.getElementById("overallstatsChart").getContext('2d');
-    var myChart = new Chart(overallstatsChart, {
-        type: 'line',
-        data: {
-            labels: label,
-            datasets: [{
-                label: 'University Attendance', // Name the series
-                data: data, // Specify the data values array
-                fill: false,
-                borderColor: '#2196f3', // Add custom color border (Line)
-                backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                borderWidth: 2 // Specify bar border width
-            }]},
-        options: {
-          responsive: true, // Instruct chart js to respond nicely.
-          maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+//     var overallstatsChart = document.getElementById("overallstatsChart").getContext('2d');
+// var myChart = new Chart(overallstatsChart, {
+//     type: 'line',
+//     data: {
+//         labels: label,
+//         datasets: [{
+//             label: 'University Attendance', // Name the series
+//             data: data, // Specify the data values array
+//             fill: false,
+//             borderColor: '#2196f3', // Add custom color border (Line)
+//             backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+//             borderWidth: 2 // Specify bar border width
+//         }]},
+//     options: {
+//       responsive: true, // Instruct chart js to respond nicely.
+//       maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+//     }
+// });
+if ($(window).width() > 768) {
+    $('#sidebar').hover(function() {
+            // alert("done");
+            $(this).addClass('sidebar-opened');
+            $(".row-sidebar-text").addClass('text-opened');
+            $('.icon-sidebar').css('margin', '0px');
+            $('.row-sidebar').css('padding', '0px 10px');
+        },
+        function() {
+            $(this).removeClass('sidebar-opened');
+            $(".row-sidebar-text").removeClass('text-opened');
+            $(".dashboard-inner").removeClass('da');
+            $('.icon-sidebar').css('margin', 'auto');
+            $('.row-sidebar').css('padding', '0px');
         }
-    });
-
+    );
+}
 </script>
 
 
@@ -3055,10 +3117,11 @@ body {
 
 
 
-    <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
 </body>
 <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
-<script src="../assests/script/dashbaord.js"></script>
+<!-- <script src="../assests/script/dashbaord.js"></script> -->
+<script src="./jquery.min.js"></script>
 
 </html>
 
@@ -3103,6 +3166,5 @@ body {
 //} -->
 <!-- <?php 
 
-}
 
 ?> -->

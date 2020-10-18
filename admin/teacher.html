@@ -1,42 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
 
 <head>
     <script>
         $('.profile').click(function () {
-    if(  
-        $("#drop-down-profile").hasClass('row-sidebar-profile')){
-        $("#drop-down-profile").addClass('row-sidebar-profile-display');
-        $("#drop-down-profile").removeClass('row-sidebar-profile');
-    }
-    else{
-        $("#drop-down-profile").addClass('row-sidebar-profile');
-        $("#drop-down-profile").removeClass('row-sidebar-profile-display');
-    }
-});
+            if (
+                $("#drop-down-profile").hasClass('row-sidebar-profile')) {
+                $("#drop-down-profile").addClass('row-sidebar-profile-display');
+                $("#drop-down-profile").removeClass('row-sidebar-profile');
+            }
+            else {
+                $("#drop-down-profile").addClass('row-sidebar-profile');
+                $("#drop-down-profile").removeClass('row-sidebar-profile-display');
+            }
+        });
 
-// hover function only if width is above 768px
-if( $( window ).width()>768){
-    $('#sidebar').hover(function () {
-        // alert("done");
-       $(this).addClass('sidebar-opened');
-       $(".row-sidebar-text").addClass('text-opened');
-       $('.icon-sidebar').css('margin','0px');
-       $('.row-sidebar').css('padding','0px 10px');
-       }
-      ,
-      function (){
-       $(this).removeClass('sidebar-opened');
-       $(".row-sidebar-text").removeClass('text-opened');
-       $(".dashboard-inner").removeClass('da');
-       $('.icon-sidebar').css('margin','auto');
-       $('.row-sidebar').css('padding','0px');
-      } 
-    );
-       }
+        // hover function only if width is above 768px
+        if ($(window).width() > 768) {
+            $('#sidebar').hover(function () {
+                // alert("done");
+                $(this).addClass('sidebar-opened');
+                $(".row-sidebar-text").addClass('text-opened');
+                $('.icon-sidebar').css('margin', '0px');
+                $('.row-sidebar').css('padding', '0px 10px');
+            }
+                ,
+                function () {
+                    $(this).removeClass('sidebar-opened');
+                    $(".row-sidebar-text").removeClass('text-opened');
+                    $(".dashboard-inner").removeClass('da');
+                    $('.icon-sidebar').css('margin', 'auto');
+                    $('.row-sidebar').css('padding', '0px');
+                }
+            );
+        }
 
 
 
@@ -167,7 +167,7 @@ if( $( window ).width()>768){
                     Batch Wise Attendance
                 </h2>
             </div>
-          
+
 
 
 
@@ -211,27 +211,7 @@ if( $( window ).width()>768){
             <!-- depart wise statistics -->
             <div class="dashboard-inner-main-departs">
                 <div class="dimd-row">
-                    <div class="dimd-inner">
-                        <h2>Batch 16</h2>
-                        <div class="dimd-inner-top" id="chartContainer">
-                            <div class="dimc-inner-top">
-                                <h2>100%</h2>
-                            </div>
-                        </div>
-                        <div class="dimd-inner-bottom">
-                            <div class="dimdib-row dimdib-row-border">
-                                <h2>Total Scheduled Classes</h2>
-                                <h3>22</h3>
-                            </div>
-                            <div class="dimdib-row dimdib-row-border">
-                                <h2>Total Classes Conducted</h2>
-                                <h3>21</h3>
-                            </div>
-                            <div class="dimdib-row dimdib-row-border">
-                                <h2>Total Classes Missed</h2>
-                                <h3>1</h3>
-                            </div>
-                        </div>
+                    <div class="dimd-inner transparent">
                     </div>
                     <div class="dimd-inner">
                         <h2>Batch 17</h2>
@@ -255,31 +235,12 @@ if( $( window ).width()>768){
                             </div>
                         </div>
                     </div>
-                    <div class="dimd-inner">
-                        <h2>Batch 18</h2>
-                        <div class="dimd-inner-top" id="chartContainer">
-                            <div class="dimc-inner-top">
-                                <h2>100%</h2>
-                            </div>
-                        </div>
-                        <div class="dimd-inner-bottom">
-                            <div class="dimdib-row dimdib-row-border">
-                                <h2>Total Scheduled Classes</h2>
-                                <h3>22</h3>
-                            </div>
-                            <div class="dimdib-row dimdib-row-border">
-                                <h2>Total Classes Conducted</h2>
-                                <h3>21</h3>
-                            </div>
-                            <div class="dimdib-row dimdib-row-border">
-                                <h2>Total Classes Missed</h2>
-                                <h3>1</h3>
-                            </div>
-                        </div>
+                    <div class="dimd-inner transparent">
                     </div>
                 </div>
-                <div class="dimd-row" >                
-                    <!-- <div class="dimd-inner">
+            </div>
+            <div class="dimd-row">
+                <!-- <div class="dimd-inner">
                         <h2>Batch 19</h2>
                         <div class="dimd-inner-top" id="chartContainer">
                             <div class="dimc-inner-top">
@@ -301,7 +262,7 @@ if( $( window ).width()>768){
                             </div>
                         </div>
                     </div> -->
-                    <!-- <div class="dimd-inner">
+                <!-- <div class="dimd-inner">
                         <h2>Batch 20</h2>
                         <div class="dimd-inner-top" id="chartContainer">
                             <div class="dimc-inner-top">
@@ -323,7 +284,7 @@ if( $( window ).width()>768){
                             </div>
                         </div>
                     </div> -->
-                    <!-- <div class="dimd-inner" style="visibility: hidden;" id="hide">
+                <!-- <div class="dimd-inner" style="visibility: hidden;" id="hide">
                         <h2>Batch 20</h2>
                         <div class="dimd-inner-top" id="chartContainer">
                             <div class="dimc-inner-top">
@@ -345,129 +306,129 @@ if( $( window ).width()>768){
                             </div>
                         </div>
                     </div> -->
-                </div>
-              
             </div>
-
-
-
-
-
-
-
 
         </div>
 
-        <style>
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box
+
+
+
+
+
+
+
+    </div>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .avatar {
+            min-width: 200px;
+            /* font-size: 14px !important; */
+            /* width: fit-content; */
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .avatar::before,
+        .avatar::after {
+            --scale: 0;
+            --arrow-size: 20px;
+            --tooltip-color: #2196f3;
+
+            position: absolute;
+            z-index: 999;
+            top: -.25rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+            transition: 150ms transform;
+            transform-origin: bottom center;
+        }
+
+        .avatar::before {
+            --translate-y: calc(-100% - var(--arrow-size));
+
+            content: attr(data-tooltip);
+            color: white;
+            padding: .5rem;
+            border-radius: .3rem;
+            text-align: center;
+            width: max-content;
+            max-width: 100%;
+            background: var(--tooltip-color);
+        }
+
+        .avatar:hover::before,
+        .avatar:hover::after {
+            --scale: 1;
+        }
+
+        .avatar::after {
+            --translate-y: calc(-1 * var(--arrow-size));
+
+            content: '';
+            border: var(--arrow-size) solid transparent;
+            border-top-color: var(--tooltip-color);
+            transform-origin: top center;
+        }
+    </style>
+
+    <script>
+
+        // <?php $time_line = ['week1','week2','week3','week4','week5','week6']; ?>
+        // var label = [];
+        // <?php for($i=0;$i<sizeof($time_line);$i++){
+        //     ?>
+
+        //     label.push("<?php echo $time_line[$i] ?>");
+        //     <?php
+        // }
+        // ?>
+        // <?php $data_set = ['22','11','32','14','17','11']; ?>
+        // var data = [];
+        // <?php for($i=0;$i<sizeof($data_set);$i++){
+        //     ?>
+
+        //     data.push("<?php echo $data_set[$i] ?>");
+        //     <?php
+        // }
+        // ?>
+        // overall university report
+        var overallstatsChart = document.getElementById("overallstatsChart").getContext('2d');
+        var myChart = new Chart(overallstatsChart, {
+            type: 'line',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: 'University Attendance', // Name the series
+                    data: data, // Specify the data values array
+                    fill: false,
+                    borderColor: '#2196f3', // Add custom color border (Line)
+                    backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                    borderWidth: 2 // Specify bar border width
+                }]
+            },
+            options: {
+                responsive: true, // Instruct chart js to respond nicely.
+                maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
             }
+        });
 
-            body {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-            }
-
-            .avatar {
-                min-width: 200px;
-                /* font-size: 14px !important; */
-                /* width: fit-content; */
-                border-radius: 50%;
-                background-size: cover;
-                background-position: center;
-                position: relative;
-            }
-
-            .avatar::before,
-            .avatar::after {
-                --scale: 0;
-                --arrow-size: 20px;
-                --tooltip-color: #2196f3;
-
-                position: absolute;
-                z-index: 999;
-                top: -.25rem;
-                left: 50%;
-                transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-                transition: 150ms transform;
-                transform-origin: bottom center;
-            }
-
-            .avatar::before {
-                --translate-y: calc(-100% - var(--arrow-size));
-
-                content: attr(data-tooltip);
-                color: white;
-                padding: .5rem;
-                border-radius: .3rem;
-                text-align: center;
-                width: max-content;
-                max-width: 100%;
-                background: var(--tooltip-color);
-            }
-
-            .avatar:hover::before,
-            .avatar:hover::after {
-                --scale: 1;
-            }
-
-            .avatar::after {
-                --translate-y: calc(-1 * var(--arrow-size));
-
-                content: '';
-                border: var(--arrow-size) solid transparent;
-                border-top-color: var(--tooltip-color);
-                transform-origin: top center;
-            }
-        </style>
-
-        <script>
-
-            // <?php $time_line = ['week1','week2','week3','week4','week5','week6']; ?>
-            // var label = [];
-            // <?php for($i=0;$i<sizeof($time_line);$i++){
-            //     ?>
-
-            //     label.push("<?php echo $time_line[$i] ?>");
-            //     <?php
-            // }
-            // ?>
-            // <?php $data_set = ['22','11','32','14','17','11']; ?>
-            // var data = [];
-            // <?php for($i=0;$i<sizeof($data_set);$i++){
-            //     ?>
-
-            //     data.push("<?php echo $data_set[$i] ?>");
-            //     <?php
-            // }
-            // ?>
-            // overall university report
-            var overallstatsChart = document.getElementById("overallstatsChart").getContext('2d');
-            var myChart = new Chart(overallstatsChart, {
-                type: 'line',
-                data: {
-                    labels: label,
-                    datasets: [{
-                        label: 'University Attendance', // Name the series
-                        data: data, // Specify the data values array
-                        fill: false,
-                        borderColor: '#2196f3', // Add custom color border (Line)
-                        backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                        borderWidth: 2 // Specify bar border width
-                    }]
-                },
-                options: {
-                    responsive: true, // Instruct chart js to respond nicely.
-                    maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-                }
-            });
-
-        </script>
+    </script>
 
 
 
@@ -475,7 +436,7 @@ if( $( window ).width()>768){
 
 
 
-        <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
@@ -492,7 +453,3 @@ if( $( window ).width()>768){
 
 
 </script>
-
-
-
-

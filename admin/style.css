@@ -72,6 +72,10 @@ body{
   text-transform: uppercase;
   cursor: pointer;
 }
+.transparent{
+    visibility:transparent !important;
+    background-color: transparent !important;
+}
 
 .dashboard-inner-main-graph{
     display: flex;

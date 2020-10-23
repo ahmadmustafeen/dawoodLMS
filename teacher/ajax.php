@@ -19,8 +19,8 @@ if(isset($_POST['id'])){
     while($row = mysqli_fetch_assoc($batch_name_Q)){
         $batch_name = $row['batch_name'];
     }
-    // $table_name =  $dept_id.'_'.$batch_id.'_'.$term.'_'.$section.'_students';
-    $table_name = 'cs_4_1_a_students';
+    $table_name =  $dept_id.'_'.$batch_id.'_'.$term.'_'.$section.'_students';
+    // $table_name = 'cs_4_1_a_students';
     
     
     echo "<tr><td class='table-name'>Student Name</td><td>Student ID</td><td>Status</td></tr>";

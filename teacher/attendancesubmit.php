@@ -27,13 +27,13 @@ if(isset($_POST['submit'])){
     }
 
 
-    $term = 2;
-    $term_id = 1;
+    // $term = 2;
+    $term = 1;
 
     $attendance_table_name = $class_name.'_'.$subject_id.'_'.$term.'_'.$section.'_attendance';
     $class_name_student  = $class_name."_".$term_id."_".$section."_students";
-    echo $attendance_table_name;
-    echo $class_name_student;
+    // echo $attendance_table_name;
+    // echo $class_name_student;
     
 
     // inserting into lecture detail so a new id is generated and can be used to enter the attendance for that specific lecture
@@ -83,7 +83,7 @@ if(isset($_POST['submit'])){
             if($statusget == 'ABSENT'){
                 $query = "UPDATE `$attendance_table_name` SET `$student_rollnumber`='absent' where lecture_id = '$lecture_id'";
                 if($con -> query($query)){
-                    echo "ABAS";
+                    // echo "ABAS";
                 }
             } 
             if($statusget == 'PRESENT'){
@@ -94,7 +94,7 @@ if(isset($_POST['submit'])){
     }
 
     ?>
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -115,11 +115,12 @@ if(isset($_POST['submit'])){
                 <p>D.A.M.S</p>
                 <hr>
                 <div class="row-sidebar">
-                 <a href="./index.html">   <i class="far fa-user-circle icon-sidebar"></i>
-                    <div class="row-sidebar-text name-bar ">
-                        Admin
-                    </div>
-    </a>            </div>
+                    <a href="./index.html"> <i class="far fa-user-circle icon-sidebar"></i>
+                        <div class="row-sidebar-text name-bar ">
+                            Admin
+                        </div>
+                    </a>
+                </div>
                 <hr>
                 <div class="row-sidebar selected-sidebar profile">
                     <i class="fas fa-university icon-sidebar "></i>
@@ -216,16 +217,23 @@ if(isset($_POST['submit'])){
             <div class="dashboard-inner-top">
                 <h2>
                     Attendance of Batch <b style="font-weight:bolder">
-                    <?php echo $batch_name ?> <br>
-                    </b> and Subject <strong style="font-weight:bolder"><?php echo ucfirst($subject_name)  ?></strong><br> is submitted Successfully.
+                        <?php echo $batch_name ?> <br>
+                    </b> and Subject <strong
+                        style="font-weight:bolder"><?php echo ucfirst($subject_name)  ?></strong><br> is submitted
+                    Successfully.
                 </h2>
-    
+                <div class="button-col">
+                    <a href="./index.php">
+                        <button>Back To Dashboard</button>
+                    </a>
+                </div>
+
             </div>
-          
-            
-          
+
+
+
         </div>
-     
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -238,39 +246,37 @@ if(isset($_POST['submit'])){
 </html>
 
 <script>
-    b = 'red';
-    status = [];
-    $('#selectDeparta').change(function () {
-        // $('#best-batch-heading').css('display', 'none');
-        // $('#best-batch-div').css('display', 'none');
-        // $('#batch-heading').css('display', 'flex');
-        // $('#batch-div').css('display', 'flex');
-        $('#student_name_div').css('display', 'flex');
-        number_of_students = document.getElementById('totalnumberofstudents').value;
-        for (i = 0; i > number_of_students; i++) {
-            status.push('present');
-        }
+b = 'red';
+status = [];
+$('#selectDeparta').change(function() {
+    // $('#best-batch-heading').css('display', 'none');
+    // $('#best-batch-div').css('display', 'none');
+    // $('#batch-heading').css('display', 'flex');
+    // $('#batch-div').css('display', 'flex');
+    $('#student_name_div').css('display', 'flex');
+    number_of_students = document.getElementById('totalnumberofstudents').value;
+    for (i = 0; i > number_of_students; i++) {
+        status.push('present');
+    }
 
-    });
+});
 
 
-    $('#selectBatch').change(function () {
-        $('#best-batch-heading').css('display', 'none');
-        $('#best-batch-div').css('display', 'none');
-        $('#batch-heading').css('display', 'flex');
-        $('#batch-div').css('display', 'flex');
-    });
+$('#selectBatch').change(function() {
+    $('#best-batch-heading').css('display', 'none');
+    $('#best-batch-div').css('display', 'none');
+    $('#batch-heading').css('display', 'flex');
+    $('#batch-div').css('display', 'flex');
+});
 
-    $('#chkTest').click(function () {
-        if (b == 'red') {
-            b = 'green';
-        }
-        else {
-            b = 'red';
-        }
+$('#chkTest').click(function() {
+    if (b == 'red') {
+        b = 'green';
+    } else {
+        b = 'red';
+    }
 
-    });
-
+});
 
 
 
@@ -279,70 +285,65 @@ if(isset($_POST['submit'])){
 
 
 
-    // automaic
-    way = 'red';
-    $('#way').click(function () {
-        if (way == 'red') {
-            document.getElementById('manual').style.display = 'flex';
-            document.getElementById('automatic').style.display = 'none';
-            way = 'green';
-        }
-        else {
-            document.getElementById('automatic').style.display = 'flex';
-            document.getElementById('manual').style.display = 'none';
-            way = 'red';
-        }
 
-    });
+// automaic
+way = 'red';
+$('#way').click(function() {
+    if (way == 'red') {
+        document.getElementById('manual').style.display = 'flex';
+        document.getElementById('automatic').style.display = 'none';
+        way = 'green';
+    } else {
+        document.getElementById('automatic').style.display = 'flex';
+        document.getElementById('manual').style.display = 'none';
+        way = 'red';
+    }
 
-    // attendace template to be put in loop
-    var switchStatus = false;
-    $(".students_present").on('change', function () {
-        if ($(this).is(':checked')) {
-            switchStatus = $(this).is(':checked');
-        }
-        else {
-            switchStatus = $(this).is(':checked');
-        }
-    });
+});
 
-
-    $("#selectDepart").change(function () {
-        $('.dit-class-students').css('display', 'flex');
-
-    });
+// attendace template to be put in loop
+var switchStatus = false;
+$(".students_present").on('change', function() {
+    if ($(this).is(':checked')) {
+        switchStatus = $(this).is(':checked');
+    } else {
+        switchStatus = $(this).is(':checked');
+    }
+});
 
 
+$("#selectDepart").change(function() {
+    $('.dit-class-students').css('display', 'flex');
 
+});
 </script>
 
 <!-- pop up code -->
 <script>
+var modal = document.getElementById("myModal");
 
-    var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "flex";
+}
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function () {
-        modal.style.display = "flex";
-    }
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
         modal.style.display = "none";
     }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+}
 </script>
 <script src="./jquery.js"></script>
 
@@ -351,18 +352,17 @@ if(isset($_POST['submit'])){
 
 
 <script>
-    function get(ida) {
-        alert(ida);
-    }
-
+function get(ida) {
+    alert(ida);
+}
 </script>
-    
-    <script>
-    if ( window.history.replaceState ) {
-      window.history.replaceState( null, null, window.location.href );
-    }
-    </script>
-    <?php
+
+<script>
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+}
+</script>
+<?php
 }
 else{
     header('location:./index.php');

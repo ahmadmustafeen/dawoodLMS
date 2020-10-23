@@ -157,15 +157,15 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
                     </div>
                 </div>
                 <div class="row-sidebar">
-                    <a href="./attendance-eng.html">
+                    <a href="./viewAttendance.php">
 
                         <i class="fas fa-file-upload icon-sidebar"></i>
                         <div class="row-sidebar-text ">
-                            Upload Engaged Attendance
+                            View Attendance
                         </div>
                     </a>
                 </div>
-                <div class="row-sidebar">
+                <!-- <div class="row-sidebar">
                     <i class="far fa-calendar-alt icon-sidebar"></i>
                     <div class="row-sidebar-text ">
                         View Timetable
@@ -194,7 +194,7 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
                     <div class="row-sidebar-text ">
                         PDF Report Download
                     </div>
-                </div>
+                </div> -->
                 <div class="row-sidebar">
                     <a href="../logout.php" class='row-sidebar' style='width:100%'>
                         <i class="fas fa-sign-out-alt icon-sidebar"></i>
@@ -235,23 +235,22 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
                     <h2>Select any of the Following Way:</h2>
                     <div class="attendance-upload-type">
                         <h2>
-                            Upload Excel Sheet
+                         Submit Attendance Manually
                         </h2>
-                        <div class="tick" id="auto"></div>
+                        <div class="tick" id="manu" style="background-color:rgb(7, 219, 95);"></div>
                     </div>
-                    <div class="attendance-upload-type">
+                    <!-- <div class="attendance-upload-type">
                         <h2>
                             Manually Submit Attendance
                         </h2>
                         <div class="tick" id="manu"></div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <section id="automatic">
-            <form action="./confirm.php" method="POST" enctype="multipart/form-data"  style='width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center'>
+            <!-- <section id="automatic"> -->
           
                 <!-- best batch -->
-                <div class="dashboard-inner-teacher">
+                <!-- <div class="dashboard-inner-teacher">
                     <h2 style="text-align: center;">
                         Upload Excel Sheet
                     </h2>
@@ -315,12 +314,13 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
 
                         </table>
                     </div>
-                </div>
-            </section>
+                </div> -->
+            <!-- </section> -->
 
 
-
-            <section id="manual">
+            <form action="./confirm.php" method="POST" enctype="multipart/form-data"  style='width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center'>
+          
+            <section id="manual" style="display:flex">
 
 
 
@@ -552,6 +552,26 @@ $("#selectDepart").change(function() {
 
 
 <script>
+
+if ($(window).width() > 768) {
+    $('#sidebar').hover(function() {
+            // alert("done");
+            $(this).addClass('sidebar-opened');
+            $(".row-sidebar-text").addClass('text-opened');
+            $('.icon-sidebar').css('margin', '0px');
+            $('.row-sidebar').css('padding', '0px 10px');
+        },
+        function() {
+            $(this).removeClass('sidebar-opened');
+            $(".row-sidebar-text").removeClass('text-opened');
+            $(".dashboard-inner").removeClass('da');
+            $('.icon-sidebar').css('margin', 'auto');
+            $('.row-sidebar').css('padding', '0px');
+        }
+    );
+}
+
+
 $('#auto').click(function() {
     var auto = document.getElementById('auto');
     var manu = document.getElementById('manu');

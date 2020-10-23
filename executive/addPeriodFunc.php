@@ -16,7 +16,7 @@ $subject =  $_POST['subject'];
 $day =  $_POST['day'];
 $credit =  $_POST['credit'];
 $section =  $_POST['section'];
-
+$term_id = 1;
 $table_name = $dept."_".$batch."_".$subject."_".$term_id."_".$section."_attendance";
 // echo $table_name;
 
@@ -41,8 +41,8 @@ for($i = 1 ; $i<151;$i++){
 $section = strtolower($section);
 
 
-$insert_period  = "INSERT INTO `period_table_normal`(`timing_id`,`section`, `teacher_id`, `dept_id`, `batch_id`, `room_id`, `subject_id`, `day_id`, `credit_hour`)
- VALUES ('$time','$section','$teacher','$dept','$batch','$room','$subject','$day','$credit')";
+$insert_period  = "INSERT INTO `period_table_normal`(`timing_id`,`section`, `teacher_id`, `dept_id`, `batch_id`, `room_id`, `subject_id`, `day_id`, `credit_hour`,`term_id`)
+ VALUES ('$time','$section','$teacher','$dept','$batch','$room','$subject','$day','$credit','$term_id')";
 $con -> query($insert_period);
 ?>
 

@@ -57,27 +57,28 @@ if(isset($_SESSION['User']))
     $date = date('Y-m-d');
     $dayOfWeek = date("l", strtotime($date));
     $dayOfWeek = strtolower($dayOfWeek);
-    $nu = 2;
-    // switch($dayOfWeek){
-    //     case 'monday':
-    //         $nu = 1;
-    //     break;
-    //     case 'tuesday':
-    //         $nu = 2;
-    //     break;
-    //     case 'wednesday':
-    //         $nu = 3;
-    //     break;
-    //     case 'thursday':
-    //         $nu = 4;
-    //     break;
-    //     case 'friday':
-    //         $nu = 5;
-    //     break;
-    //     case 'saturday':
-    //         $nu = 6;
-    //     break;
-    // }
+    $nu = 0;
+    switch($dayOfWeek){
+        case 'monday':
+            $nu = 1;
+        break;
+        case 'tuesday':
+            $nu = 2;
+        break;
+        case 'wednesday':
+            $nu = 3;
+        break;
+        case 'thursday':
+            $nu = 4;
+        break;
+        case 'friday':
+            $nu = 5;
+        break;
+        case 'saturday':
+            $nu = 6;
+        break;
+      
+    }
     
     $pu = $nu-1;
   $period_name_Q  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE (teacher_id = '$teacher_id') and ((day_id = '$nu') or (day_id = '$pu')) ");

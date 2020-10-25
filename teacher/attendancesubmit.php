@@ -1,7 +1,266 @@
 <?php
 require_once('../connection.php');
 session_start();
-if(isset($_POST['submit'])){ 
+if(isset($_POST['edit'])){
+    $get_recent_term_Q  = mysqli_query($con,"SELECT `term_name`,`term_id` FROM `term` WHERE 1");
+    while($row = mysqli_fetch_assoc($get_recent_term_Q)){
+        $term_name = $row['term_name'];
+        $term_id = $row['term_id'];
+    }
+    $class_name =  $_POST['class_name'];
+    $period_id =  $_POST['period_id'];   
+    $term = $term_id;
+
+
+
+
+
+    
+    $period_name_Qa  = mysqli_query($con,"SELECT `subject_id`,`section` FROM `period_table_normal` WHERE period_id = '$period_id'");
+
+    while($row = mysqli_fetch_assoc($period_name_Qa)){
+        $subject_id = $row['subject_id'];
+        $section = $row['section'];
+    }
+    
+    $attendance_table_name = $class_name.'_'.$subject_id.'_'.$term.'_'.$section.'_attendance';
+    $class_name_student  = $class_name."_".$term_id."_".$section."_students";
+    $getting_student_id  = mysqli_query($con,"SELECT `student_id` FROM `$class_name_student` WHERE 1");
+    
+    ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../assests/style/dashboard-index.css">
+    <link rel="stylesheet" href="../assests/style/teacher-portal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <title>Dashboard</title>
+</head>
+
+<body style="background-color: #e0e0e0;">
+
+    <div class="dashboard">
+        <div class="sidebar " id="sidebar">
+            <div class="sidebar-inner " id="sidebar-inner">
+                <p>D.A.M.S</p>
+                <hr>
+                <div class="row-sidebar profile">
+
+                    <i class="far fa-user-circle icon-sidebar"></i>
+                    <div class="row-sidebar-text name-bar ">
+                        <?php echo $teacher_name; ?>
+
+                    </div>
+                </div>
+                <div id="drop-down-profile" class="row-sidebar-profile">
+                    <div class="row-sidebar">
+                        <a href="">
+                            <i class="fas fa-address-card icon-sidebar"></i>
+                            <div class="row-sidebar-text ">
+                                View Profile
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="row-sidebar">
+                        <a href="">
+                            <i class="fas fa-unlock-alt icon-sidebar"></i>
+                            <div class="row-sidebar-text ">
+                                Change Password
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div>
+                <hr>
+                <div class="row-sidebar selected-sidebar">
+
+
+                    <i class="fas fa-file-upload icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Upload Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <a href="./viewAttendance.php">
+
+                        <i class="fas fa-file-upload icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            View Attendance
+                        </div>
+                    </a>
+                </div>
+                <!-- <div class="row-sidebar">
+                    <i class="far fa-calendar-alt icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        View Timetable
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-users icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Remaining Scheduled Classes
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fab fa-stack-overflow icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Student Attendance Statistics
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fab fa-stack-overflow icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Classes Conducted Statistics
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <i class="fas fa-download icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        PDF Report Download
+                    </div>
+                </div> -->
+                <div class="row-sidebar">
+                    <a href="../logout.php" class='row-sidebar' style='width:100%'>
+                        <i class="fas fa-sign-out-alt icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Logout
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="dashboard-inner " id="main-bar">
+            <div class="floating-menu">
+                <button id="floating">X</button>
+            </div>
+
+            <div class="dashboard-inner-teacher-top">
+                <h2>Teacher's Dashboard</h2>
+            </div>
+            <form action="./confirm.php" style="width:100%" method="POST">
+
+                <div class="dit-class-students" style="display:flex;margin:auto;margin-top:50px">
+
+                
+                    <div id='studentsa' style="width:80%">
+                        <table style='width:100% !important'>
+                            <tr>
+                                <td class='table-name'>Student Name</td>
+                                <td>Student ID</td>
+                                <td>Status</td>
+                            </tr>
+                            <?php
+                        $student_name_Q  = mysqli_query($con,"SELECT `student_id`,`student_name`,`student_rollnumber` FROM `$class_name_student` WHERE 1");
+
+                        while($row = mysqli_fetch_assoc($student_name_Q)){
+                            $student_id = $row['student_id'];
+                            $student_name = $row['student_name'];
+                            $student_roll_number = $row['student_rollnumber'];
+                            $status = $_POST[$student_id];
+                            if($status == 'absent'){
+                                $set_Status = 'absent';
+                                $check = 'checked'; 
+                            }
+                            else{
+                                $set_Status = 'present';
+                                $check = ''; 
+                            }
+                        ?>
+
+
+
+                            <tr>
+                                <td class='table-name'>
+                                    <?php echo $student_name ?>
+                                </td>
+                                <td>
+                                    <?php echo $student_id ?>
+                                </td>
+                                <td class='get_ID'>
+                                    <div class='attendance-switch'>
+                                        <input type='checkbox' id='<?php echo $student_id ?>'
+                                            onclick='get(this.id)' value='<?php echo $set_Status?>' name='<?php echo $student_id ?>' <?php echo $check ?>>
+                                        <label for='<?php echo $student_id ?>'>
+                                            <span class='attendance-track students_changed' id='bustton-color'>
+                                            </span> </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php $date = $_POST['date'];
+                            $class_name =  $_POST['class_name'];
+                        }
+                        ?>
+                          <input type="date" name="date" id='date' value="<?php  echo $date ?>" style="display:none">
+                        <input name="class_name" id='class_name' value="<?php  echo $class_name ?>" style="display:none">
+                        <input name="period_id" id='period_id' value="<?php  echo $period_id ?>" style="display:none">
+                        </table>
+                    </div>
+
+
+                    <!-- <button type="submit" id="autoa" name="autoa" style="text-align:center">Confirm Submission</button> -->
+                    <button type="submit" id="attendancesubmit" name="attendancesubmit"
+                        style="text-align:center;">Review Again Before
+                        Submission</button>
+                </div>
+                <input type="number" id='totalnumberofstudents' style='display:none'>
+
+            </form>
+        </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script>
+// attendace template to be put in loop
+var switchStatus = false;
+$(".students_present").on('change', function() {
+    if ($(this).is(':checked')) {
+        switchStatus = $(this).is(':checked');
+    } else {
+        switchStatus = $(this).is(':checked');
+    }
+});
+
+function get(id) {
+    console.log(id, document.getElementById(id).value);
+    if (
+        document.getElementById(id).value == 'present') {
+        document.getElementById(id).value = 'absent';
+
+    } else {
+        document.getElementById(id).value = 'present';
+
+    }
+}
+</script>
+
+</html>
+
+
+
+
+
+<?php
+}
+else if(isset($_POST['submit'])){ 
     $get_recent_term_Q  = mysqli_query($con,"SELECT `term_name`,`term_id` FROM `term` WHERE 1");
     while($row = mysqli_fetch_assoc($get_recent_term_Q)){
         $term_name = $row['term_name'];
@@ -28,7 +287,7 @@ if(isset($_POST['submit'])){
 
 
     // $term = 2;
-    $term = 1;
+    $term = $term_id;
 
     $attendance_table_name = $class_name.'_'.$subject_id.'_'.$term.'_'.$section.'_attendance';
     $class_name_student  = $class_name."_".$term_id."_".$section."_students";

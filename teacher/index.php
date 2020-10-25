@@ -54,10 +54,10 @@ if(isset($_SESSION['User']))
     }
 
 
-    // $date = date('Y-m-d');
-    // $dayOfWeek = date("l", strtotime($date));
-    // $dayOfWeek = strtolower($dayOfWeek);
-    // $nu = 0;
+    $date = date('Y-m-d');
+    $dayOfWeek = date("l", strtotime($date));
+    $dayOfWeek = strtolower($dayOfWeek);
+    $nu = 2;
     // switch($dayOfWeek){
     //     case 'monday':
     //         $nu = 1;
@@ -78,13 +78,30 @@ if(isset($_SESSION['User']))
     //         $nu = 6;
     //     break;
     // }
-//   $period_name_Q  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE teacher_id = '$teacher_id' and day_id = '$nu'");
-//   $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE teacher_id = '$teacher_id' and day_id = '$nu'");
+    
+    $pu = $nu-1;
+  $period_name_Q  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE (teacher_id = '$teacher_id') and ((day_id = '$nu') or (day_id = '$pu')) ");
+  $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE (teacher_id = '$teacher_id') and ((day_id = '$nu') or (day_id = '$pu')) ");
+$period_ids = [];
+while($row = mysqli_fetch_assoc($period_name_Q)){
+$period_id = $row['period_id'];
+array_push($period_ids,$period_id);
+}
+// echo sizeof($period_ids);
 
-
-
-$period_name_Q  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE teacher_id = '$teacher_id' ");
-$period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE teacher_id = '$teacher_id'");
+foreach($period_ids as $period_id){
+    $date = date('Y-m-d');
+    $prev_date = date('Y-m-d', strtotime(' -1 day'));
+    $lecture_get  = mysqli_query($con,"SELECT * FROM `lecture_details` WHERE period_id = '$period_id' and ((lecture_date = '$date') or (lecture_date = '$prev_date')) ");
+    while($row = mysqli_fetch_assoc($lecture_get)){
+        if (($key = array_search($period_id, $period_ids)) !== false) {
+            unset($period_ids[$key]);
+        }
+    }
+}
+// echo sizeof($period_ids);
+// $period_name_Q  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE teacher_id = '$teacher_id' ");
+// $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE teacher_id = '$teacher_id'");
 
 
 
@@ -122,8 +139,8 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
 
                     <i class="far fa-user-circle icon-sidebar"></i>
                     <div class="row-sidebar-text name-bar ">
-                         <?php echo $teacher_name; ?> 
-                        
+                        <?php echo $teacher_name; ?>
+
                     </div>
                 </div>
                 <div id="drop-down-profile" class="row-sidebar-profile">
@@ -138,12 +155,12 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
                     </div>
                     <div class="row-sidebar">
                         <a href="">
-                        <i class="fas fa-unlock-alt icon-sidebar"></i>
-                        <div class="row-sidebar-text ">
-                            Change Password
-                        </div>
+                            <i class="fas fa-unlock-alt icon-sidebar"></i>
+                            <div class="row-sidebar-text ">
+                                Change Password
+                            </div>
                         </a>
-                        
+
                     </div>
 
                 </div>
@@ -235,7 +252,7 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
                     <h2>Select any of the Following Way:</h2>
                     <div class="attendance-upload-type">
                         <h2>
-                         Submit Attendance Manually
+                            Submit Attendance Manually
                         </h2>
                         <div class="tick" id="manu" style="background-color:rgb(7, 219, 95);"></div>
                     </div>
@@ -248,9 +265,9 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
                 </div>
             </div>
             <!-- <section id="automatic"> -->
-          
-                <!-- best batch -->
-                <!-- <div class="dashboard-inner-teacher">
+
+            <!-- best batch -->
+            <!-- <div class="dashboard-inner-teacher">
                     <h2 style="text-align: center;">
                         Upload Excel Sheet
                     </h2>
@@ -266,39 +283,46 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
 
                                         <option selected disabled>Select from Available Classes</option>
                                         <?php
-                                          while($row = mysqli_fetch_assoc($period_name_Q)){
-                                            $period_table_id = $row['period_id'];
-                                            $period_id = $row['timing_id'];
-                                            $batch_id = $row['batch_id'];
-                                            $subject_id = $row['subject_id'];
+
+
+                                        // foreach($period_ids as $period_id){
+                                        //     echo sizeof($period_ids);
+                                        //     $period_name_Qaaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE period_id = '$period_id'");
+                                        //   while($row = mysqli_fetch_assoc($period_name_Qaaa)){
+                                        //      echo $period_id;
+                                        //     $period_table_id = $row['period_id'];
+                                        //     $period_id = $row['timing_id'];
+                                        //     $batch_id = $row['batch_id'];
+                                        //     $subject_id = $row['subject_id'];
                                         
                                       
                                       
                                       
-                                        $period_time_Q  = mysqli_query($con,"SELECT `period_name` FROM `period` WHERE period_id = '$period_id'");
-                                          while($row = mysqli_fetch_assoc($period_time_Q)){
-                                              $period_timing = $row['period_name'];
-                                          }
+                                        // $period_time_Q  = mysqli_query($con,"SELECT `period_name` FROM `period` WHERE period_id = '$period_id'");
+                                        //   while($row = mysqli_fetch_assoc($period_time_Q)){
+                                        //       $period_timing = $row['period_name'];
+                                        //   }
                                       
                                       
-                                          $batch_name_Q  = mysqli_query($con,"SELECT `batch_name` FROM `batch` WHERE batch_id = '$batch_id'");
-                                          while($row = mysqli_fetch_assoc($batch_name_Q)){
-                                              $batch_name = $row['batch_name'];
-                                          }
+                                        //   $batch_name_Q  = mysqli_query($con,"SELECT `batch_name` FROM `batch` WHERE batch_id = '$batch_id'");
+                                        //   while($row = mysqli_fetch_assoc($batch_name_Q)){
+                                        //       $batch_name = $row['batch_name'];
+                                        //   }
                                       
                                       
-                                          $subject_name_Q  = mysqli_query($con,"SELECT `subject_name` FROM `subject` WHERE subject_id = '$subject_id'");
-                                          while($row = mysqli_fetch_assoc($subject_name_Q)){
-                                              $subject_name = $row['subject_name'];
-                                          }
-                                          $option_period =  ucwords($subject_name)." ===== ".$batch_name." ===== ".$period_timing;
+                                        //   $subject_name_Q  = mysqli_query($con,"SELECT `subject_name` FROM `subject` WHERE subject_id = '$subject_id'");
+                                        //   while($row = mysqli_fetch_assoc($subject_name_Q)){
+                                        //       $subject_name = $row['subject_name'];
+                                        //   }
+                                        //   $option_period =  ucwords($subject_name)." ===== ".$batch_name." ===== ".$period_timing;
                                           
                                         
-                                        ?>
-                                        <option value=" <?php echo $period_table_id ?>"><?php echo $option_period ?>
-                                        </option>
-                                        <?php
-                                          }
+                                        // ?>
+                                        // <option value=" <?php echo $period_table_id ?>"><?php echo $option_period ?>
+                                        // </option>
+                                        // <?php
+                                        //   }
+                                        // }
                                         ?>
                                     </Select>
                                 </td>
@@ -318,29 +342,35 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
             <!-- </section> -->
 
 
-            <form action="./confirm.php" method="POST" enctype="multipart/form-data"  style='width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center'>
-          
-            <section id="manual" style="display:flex">
+            <form action="./confirm.php" method="POST" enctype="multipart/form-data"
+                style='width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center'>
+
+                <section id="manual" style="display:flex">
 
 
 
-                <!-- best batch -->
-                <div class="dashboard-inner-teacher">
-                    <h2 style="text-align: center;">
-                        Manual Way (Mark Attendance)
-                    </h2>
-                    <div class="dit-heading">
-                        <table>
-                            <tr>
-                                <td>
-                                    <h3>Select Class</h3>
-                                </td>
-                                <td>
-                                    <Select name="depart" id="selectDeparta">
+                    <!-- best batch -->
+                    <div class="dashboard-inner-teacher">
+                        <h2 style="text-align: center;">
+                            Manual Way (Mark Attendance)
+                        </h2>
+                        <div class="dit-heading">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h3>Select Class</h3>
+                                    </td>
+                                    <td>
+                                        <Select name="depart" id="selectDeparta">
 
-                                        <option selected disabled>Select from Available Classes</option>
-                                        <?php
-                                          while($row = mysqli_fetch_assoc($period_name_Qaa)){
+                                            <option selected disabled>Select from Available Classes</option>
+                                            <?php
+                                                  foreach($period_ids as $period_id){
+                                                    echo sizeof($period_ids);
+                                                    $period_name_Qaaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE period_id = '$period_id'");
+                                                  while($row = mysqli_fetch_assoc($period_name_Qaaa)){
+                                               
+                                   
                                             $period_table_id = $row['period_id'];
                                             $period_id = $row['timing_id'];
                                             $batch_id = $row['batch_id'];
@@ -369,41 +399,45 @@ $period_name_Qaa  = mysqli_query($con,"SELECT * FROM `period_table_normal` WHERE
                                           $option_period =  ucwords($subject_name)." ===== ".$batch_name." ===== ".$period_timing;
                                           
                                             ?>
-                                        <option value=" <?php echo $period_table_id ?>"  name="depart"><?php echo $option_period ?>
-                                        </option>
-                                        <?php
+                                            <option value=" <?php echo $period_table_id ?>" name="depart">
+                                                <?php echo $option_period ?>
+                                            </option>
+                                            <?php
                                               }
+                                            }
                                             ?>
-                                    </Select>
-                                </td>
-                            </tr>
-                        </table>
+                                        </Select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
 
-            </section>
+                </section>
 
 
-            <div class="dit-class-students" id="student_name_div">
-                    
+                <div class="dit-class-students" id="student_name_div">
+
                     <input name='period_id' id='period_id' value='<?php echo $period_table_id ?>' style="display:none">
-                    <table id='students'>
-                    <input type="date" name="date" required>
-                    </table>
-                    
+                    <div id='studentsa' style="width:80%">
+
+                        <input type="date" name="date" required>
+                    </div>
+
                     <!-- <button type="submit" id="autoa" name="autoa" style="text-align:center">Confirm Submission</button> -->
-                    <button type="submit" id="manua" name="manua"  style="text-align:center;">Review Before Submission</button>
+                    <button type="submit" id="index" name="index" style="text-align:center;">Review Before
+                        Submission</button>
 
-                </form>
+            </form>
 
-                <input type="number" id='totalnumberofstudents' style='display:none'>
-            </div>
-
-
-
-
-
+            <input type="number" id='totalnumberofstudents' style='display:none'>
         </div>
+
+
+
+
+
+    </div>
     </div>
 
 
@@ -424,20 +458,23 @@ b = 'red';
 status = [];
 $('#selectDeparta').change(function() {
     $('#student_name_div').css('display', 'flex');
+    document.getElementById('period_id').value = document.getElementById('selectDeparta').value;
     number_of_students = document.getElementById('totalnumberofstudents').value;
     for (i = 0; i > number_of_students; i++) {
         status.push('present');
     }
     var periodID = $(this).val();
-        $.ajax({
-            method: 'POST',
-            url: 'ajax.php',
-            data:{id:periodID},
-            dataType:'HTML',
-            success:function(data){
-                $('#students').html(data);
-            }
-        });
+    $.ajax({
+        method: 'POST',
+        url: 'ajax.php',
+        data: {
+            id: periodID
+        },
+        dataType: 'HTML',
+        success: function(data) {
+            $('#studentsa').html(data);
+        }
+    });
 
 });
 
@@ -537,7 +574,7 @@ $(".students_present").on('change', function() {
 $("#selectDepart").change(function() {
     $('.dit-class-students').css('display', 'flex');
     var x = document.getElementById('selectDepart').value;
-  document.getElementById('period_id').value = x
+    document.getElementById('period_id').value = x
 
 });
 </script>
@@ -552,7 +589,6 @@ $("#selectDepart").change(function() {
 
 
 <script>
-
 if ($(window).width() > 768) {
     $('#sidebar').hover(function() {
             // alert("done");
@@ -593,7 +629,6 @@ $('#manu').click(function() {
     document.getElementById('manua').style.display = 'flex';
 
 });
-
 </script>
 
 

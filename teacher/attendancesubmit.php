@@ -1,6 +1,32 @@
 <?php
 require_once('../connection.php');
 session_start();
+$username = $_SESSION['User'];
+$user_level_Q  = mysqli_query($con,"SELECT `user_type` FROM `login_info` WHERE username = '$username'");
+while($row = mysqli_fetch_assoc($user_level_Q)){
+    $user_level = $row['user_type'];
+}
+if($user_level != '3'){
+    header('location:../wellcome.php');
+}
+
+$username_T = "usertype_".$user_level."_info";
+
+
+
+
+
+// section 1
+$teacherID_Q  = mysqli_query($con,"SELECT `user_teacherid` FROM $username_T WHERE username = '$username'");
+while($row = mysqli_fetch_assoc($teacherID_Q)){
+    $teacher_id = $row['user_teacherid'];
+}
+
+// section 2
+$teacherNAME_Q  = mysqli_query($con,"SELECT `teacher_name` FROM `teacher` WHERE teacher_id = '$teacher_id'");
+while($row = mysqli_fetch_assoc($teacherNAME_Q)){
+    $teacher_name = $row['teacher_name'];
+}
 if(isset($_POST['edit'])){
     $get_recent_term_Q  = mysqli_query($con,"SELECT `term_name`,`term_id` FROM `term` WHERE 1");
     while($row = mysqli_fetch_assoc($get_recent_term_Q)){
@@ -35,6 +61,7 @@ if(isset($_POST['edit'])){
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assests/style/dashboard-index.css">
     <link rel="stylesheet" href="../assests/style/teacher-portal.css">
+<script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -95,36 +122,6 @@ if(isset($_POST['edit'])){
                         </div>
                     </a>
                 </div>
-                <!-- <div class="row-sidebar">
-                    <i class="far fa-calendar-alt icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        View Timetable
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-users icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Remaining Scheduled Classes
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fab fa-stack-overflow icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Student Attendance Statistics
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fab fa-stack-overflow icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Classes Conducted Statistics
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-download icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        PDF Report Download
-                    </div>
-                </div> -->
                 <div class="row-sidebar">
                     <a href="../logout.php" class='row-sidebar' style='width:100%'>
                         <i class="fas fa-sign-out-alt icon-sidebar"></i>
@@ -160,7 +157,7 @@ if(isset($_POST['edit'])){
 
                 <div class="dit-class-students" style="display:flex;margin:auto;margin-top:50px">
 
-                
+
                     <div id='studentsa' style="width:80%">
                         <table style='width:100% !important'>
                             <tr>
@@ -197,8 +194,9 @@ if(isset($_POST['edit'])){
                                 </td>
                                 <td class='get_ID'>
                                     <div class='attendance-switch'>
-                                        <input type='checkbox' id='<?php echo $student_id ?>'
-                                            onclick='get(this.id)' value='<?php echo $set_Status?>' name='<?php echo $student_id ?>' <?php echo $check ?>>
+                                        <input type='checkbox' id='<?php echo $student_id ?>' onclick='get(this.id)'
+                                            value='<?php echo $set_Status?>' name='<?php echo $student_id ?>'
+                                            <?php echo $check ?>>
                                         <label for='<?php echo $student_id ?>'>
                                             <span class='attendance-track students_changed' id='bustton-color'>
                                             </span> </label>
@@ -209,9 +207,11 @@ if(isset($_POST['edit'])){
                             $class_name =  $_POST['class_name'];
                         }
                         ?>
-                          <input type="date" name="date" id='date' value="<?php  echo $date ?>" style="display:none">
-                        <input name="class_name" id='class_name' value="<?php  echo $class_name ?>" style="display:none">
-                        <input name="period_id" id='period_id' value="<?php  echo $period_id ?>" style="display:none">
+                            <input type="date" name="date" id='date' value="<?php  echo $date ?>" style="display:none">
+                            <input name="class_name" id='class_name' value="<?php  echo $class_name ?>"
+                                style="display:none">
+                            <input name="period_id" id='period_id' value="<?php  echo $period_id ?>"
+                                style="display:none">
                         </table>
                     </div>
 
@@ -238,6 +238,23 @@ $(".students_present").on('change', function() {
         switchStatus = $(this).is(':checked');
     }
 });
+if ($(window).width() > 768) {
+    $('#sidebar').hover(function() {
+            // alert("done");
+            $(this).addClass('sidebar-opened');
+            $(".row-sidebar-text").addClass('text-opened');
+            $('.icon-sidebar').css('margin', '0px');
+            $('.row-sidebar').css('padding', '0px 10px');
+        },
+        function() {
+            $(this).removeClass('sidebar-opened');
+            $(".row-sidebar-text").removeClass('text-opened');
+            $(".dashboard-inner").removeClass('da');
+            $('.icon-sidebar').css('margin', 'auto');
+            $('.row-sidebar').css('padding', '0px');
+        }
+    );
+}
 
 function get(id) {
     console.log(id, document.getElementById(id).value);
@@ -373,99 +390,71 @@ else if(isset($_POST['submit'])){
             <div class="sidebar-inner " id="sidebar-inner">
                 <p>D.A.M.S</p>
                 <hr>
-                <div class="row-sidebar">
-                    <a href="./index.html"> <i class="far fa-user-circle icon-sidebar"></i>
-                        <div class="row-sidebar-text name-bar ">
-                            Admin
-                        </div>
-                    </a>
-                </div>
-                <hr>
-                <div class="row-sidebar selected-sidebar profile">
-                    <i class="fas fa-university icon-sidebar "></i>
-                    <div class="row-sidebar-text ">
-                        ADD
+                <div class="row-sidebar profile">
+
+                    <i class="far fa-user-circle icon-sidebar"></i>
+                    <div class="row-sidebar-text name-bar ">
+                        <?php echo $teacher_name; ?>
+
                     </div>
                 </div>
                 <div id="drop-down-profile" class="row-sidebar-profile">
                     <div class="row-sidebar">
-                        <i class="fas fa-download icon-sidebar"></i>
-                        <div class="row-sidebar-text ">
-                            Subject
-                        </div>
+                        <a href="">
+                            <i class="fas fa-address-card icon-sidebar"></i>
+                            <div class="row-sidebar-text ">
+                                View Profile
+                            </div>
+                        </a>
+
                     </div>
                     <div class="row-sidebar">
-                        <i class="fas fa-download icon-sidebar"></i>
-                        <div class="row-sidebar-text ">
-                            User
-                        </div>
-                    </div>
-                    <div class="row-sidebar">
-                        <i class="fas fa-download icon-sidebar"></i>
-                        <div class="row-sidebar-text ">
-                            Student
-                        </div>
-                    </div>
-                    <div class="row-sidebar">
-                        <i class="fas fa-download icon-sidebar"></i>
-                        <div class="row-sidebar-text ">
-                            Department
-                        </div>
-                    </div>
-                    <div class="row-sidebar">
-                        <i class="fas fa-download icon-sidebar"></i>
-                        <div class="row-sidebar-text ">
-                            Batch
-                        </div>
+                        <a href="">
+                            <i class="fas fa-unlock-alt icon-sidebar"></i>
+                            <div class="row-sidebar-text ">
+                                Change Password
+                            </div>
+                        </a>
+
                     </div>
 
                 </div>
+                <hr>
+                <div class="row-sidebar selected-sidebar">
+
+
+                    <i class="fas fa-file-upload icon-sidebar"></i>
+                    <div class="row-sidebar-text ">
+                        Upload Attendance
+                    </div>
+                </div>
+                <div class="row-sidebar">
+                    <a href="./attendance-eng.html">
+
+                        <i class="fas fa-file-upload icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            View Attendance
+                        </div>
+                    </a>
+                </div>
 
                 <div class="row-sidebar">
-                    <i class="fas fa-building icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Upload Timetable
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-users icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Upload Compensated Table
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-user-friends icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Delete Subject
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-book icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Delete Teacher
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-download icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Delete Student
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-sign-out-alt icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Edit Profile
-                    </div>
-                </div>
-                <div class="row-sidebar">
-                    <i class="fas fa-sign-out-alt icon-sidebar"></i>
-                    <div class="row-sidebar-text ">
-                        Logout
-                    </div>
+                    <a href="../logout.php" class='row-sidebar' style='width:100%'>
+                        <i class="fas fa-sign-out-alt icon-sidebar"></i>
+                        <div class="row-sidebar-text ">
+                            Logout
+                        </div>
+                    </a>
                 </div>
 
 
             </div>
+
+
+
+
+
+
 
 
 

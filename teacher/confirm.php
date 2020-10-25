@@ -1,9 +1,36 @@
 <?php 
-
-
-if(isset($_POST['index'])){
 require_once('../connection.php');
 session_start();
+$username = $_SESSION['User'];
+$user_level_Q  = mysqli_query($con,"SELECT `user_type` FROM `login_info` WHERE username = '$username'");
+while($row = mysqli_fetch_assoc($user_level_Q)){
+    $user_level = $row['user_type'];
+}
+if($user_level != '3'){
+    header('location:../wellcome.php');
+}
+
+$username_T = "usertype_".$user_level."_info";
+
+
+
+
+
+// section 1
+$teacherID_Q  = mysqli_query($con,"SELECT `user_teacherid` FROM $username_T WHERE username = '$username'");
+while($row = mysqli_fetch_assoc($teacherID_Q)){
+    $teacher_id = $row['user_teacherid'];
+}
+
+// section 2
+$teacherNAME_Q  = mysqli_query($con,"SELECT `teacher_name` FROM `teacher` WHERE teacher_id = '$teacher_id'");
+while($row = mysqli_fetch_assoc($teacherNAME_Q)){
+    $teacher_name = $row['teacher_name'];
+}
+
+if(isset($_POST['index'])){
+
+
 if(isset($_SESSION['User']))
 {    
         $username = $_SESSION['User'];
@@ -268,7 +295,26 @@ if(isset($_SESSION['User']))
     crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
 <script src="../assests/script/dashbaord.js"></script>
-
+<script>
+        
+if ($(window).width() > 768) {
+    $('#sidebar').hover(function() {
+            // alert("done");
+            $(this).addClass('sidebar-opened');
+            $(".row-sidebar-text").addClass('text-opened');
+            $('.icon-sidebar').css('margin', '0px');
+            $('.row-sidebar').css('padding', '0px 10px');
+        },
+        function() {
+            $(this).removeClass('sidebar-opened');
+            $(".row-sidebar-text").removeClass('text-opened');
+            $(".dashboard-inner").removeClass('da');
+            $('.icon-sidebar').css('margin', 'auto');
+            $('.row-sidebar').css('padding', '0px');
+        }
+    );
+}
+</script>
 </html>
 <?php 
                 }
@@ -277,8 +323,7 @@ if(isset($_SESSION['User']))
             if(isset($_POST['attendancesubmit'])){
                 $absent = [];
                 $present = [];
-                require_once('../connection.php');
-                session_start(); 
+               
                 $get_recent_term_Q  = mysqli_query($con,"SELECT `term_name`,`term_id` FROM `term` WHERE 1");
                     while($row = mysqli_fetch_assoc($get_recent_term_Q)){
                         $term_name = $row['term_name'];
@@ -516,7 +561,26 @@ if(isset($_SESSION['User']))
     crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
 <script src="../assests/script/dashbaord.js"></script>
-
+<script>
+    
+if ($(window).width() > 768) {
+    $('#sidebar').hover(function() {
+            // alert("done");
+            $(this).addClass('sidebar-opened');
+            $(".row-sidebar-text").addClass('text-opened');
+            $('.icon-sidebar').css('margin', '0px');
+            $('.row-sidebar').css('padding', '0px 10px');
+        },
+        function() {
+            $(this).removeClass('sidebar-opened');
+            $(".row-sidebar-text").removeClass('text-opened');
+            $(".dashboard-inner").removeClass('da');
+            $('.icon-sidebar').css('margin', 'auto');
+            $('.row-sidebar').css('padding', '0px');
+        }
+    );
+}
+</script>
 </html>
 
 

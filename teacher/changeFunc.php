@@ -1,19 +1,26 @@
 <?php
 require_once('../connection.php');
 session_start();
+if(isset($_SESSION['User']))
+{
+    $username = $_SESSION['User'];
+    // echo $username;
+    $password = $_POST['Password'];
+    // echo $password;
+    $query = "UPDATE `login_info` SET `user_password`='$password' where username = '$username'";
+    if($con -> query($query)){
+        
+    }
 
-$lecture_id = $_GET['lect'];
-$table = $_GET['table'];
-
-$break  = explode('_',$table);
-$student_table_name = $break[0]."_".$break[1]."_".$break[3]."_".$break[4]."_students";
 
 
+
+}
+else{
+    header('location:../index.php');
+}
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +31,7 @@ $student_table_name = $break[0]."_".$break[1]."_".$break[3]."_".$break[4]."_stud
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/407fccd64e.js" crossorigin="anonymous"></script>
 
     <title>Dashboard</title>
 </head>
@@ -84,6 +91,15 @@ $student_table_name = $break[0]."_".$break[1]."_".$break[3]."_".$break[4]."_stud
                             </div>
                         </a>
                     </div>
+                    <div class="row-sidebar">
+                        <a href="./attendance-eng.html">
+
+                            <i class="fas fa-unlock-alt icon-sidebar"></i>
+                            <div class="row-sidebar-text ">
+                                Change Password
+                            </div>
+                        </a>
+                    </div>
 
                     <div class="row-sidebar">
                         <a href="../logout.php" class='row-sidebar' style='width:100%'>
@@ -115,61 +131,26 @@ $student_table_name = $break[0]."_".$break[1]."_".$break[3]."_".$break[4]."_stud
                 <div class="dashboard-inner-teacher-top">
                     <h2>Teacher's Dashboard</h2>
                 </div>
-
-                <div class="dit-class-students confirm" style="margin-top:100px">
-                    <table id='students'>
-                        <tr>
-                            <td class='table-name'>Serial Number</td>
-                            <td class='table-name'>Student Name</td>
-                            <td>Student ID</td>
-                            <td>Status</td>
-                        </tr>
-                        <?php
-                        
-for($i=1;$i<151;$i++){
-    $a = 'a'.$i;
-    $get_students = mysqli_query($con,"SELECT `$a` from `$table` where lecture_id='$lecture_id'");
-    while($row = mysqli_fetch_assoc($get_students)){
-     $status =  $row[$a];
-    } 
-    $get_students_name = mysqli_query($con,"SELECT `student_id`,`student_name` from `$student_table_name` where student_rollnumber='$i'");
-    while($row = mysqli_fetch_assoc($get_students_name)){
-        $student_name =  $row['student_name']; $student_id =  $row['student_id'];
-    }
-    if($status != null){
-
-    
-    ?>
-
-                        <tr>
-                            <td>
-                                <?php echo $i?>
-                            </td>
-                            <td>
-                                <?php echo $student_name?>
-                            </td>
-                            <td>
-                                <?php echo $student_id?>
-                            </td>
-                            <td>
-                                <?php echo $status ?>
-                            </td>
-                        </tr>
-
-
-                        <?php
-
-    }
-                        }
-
-                        ?>
-                    </table>  
-                    <div class="button-col">
+                <div class="dashboard-inner-teacher">
+                    <h2 style="text-align: center;">
+                        Your Password is updated Successfully.
+                    </h2>
                     <a href="./index.php">
-                        <button>Back To Dashboard</button>
+                        <button>
+                            Back To Dashboard
+                        </button>
                     </a>
+                    <a href="../logout.php">
+                        <button>
+                            Logout
+                        </button>
+                    </a>
+
+
                 </div>
-                </div>
+
+
+
             </div>
         </div>
     </body>
@@ -177,7 +158,6 @@ for($i=1;$i<151;$i++){
 </html>
 
 <script>
-    
 if ($(window).width() > 768) {
     $('#sidebar').hover(function() {
             // alert("done");
@@ -195,5 +175,4 @@ if ($(window).width() > 768) {
         }
     );
 }
-
 </script>
